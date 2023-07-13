@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Productos</title>
+        <link rel="stylesheet" href="../../css/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    </head>
+    <body>
+
+        <!-- Side bar -->
+
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="../../assets/img/gato.png" alt="..." width="90px" height="40px">
+                    <a class="navbar-brand" href="#">Plantilla camper</a>
+                </div> 
+                
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="display: grid; justify-content: center;">
+                    <div class="offcanvas-header">
+                    <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><i class="bi bi-incognito"></i>Campers Page</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <h6>_______________________________________</h6>
+
+                    <!-- Links para redireccionar -->
+
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                            <li class="nav-item" style="font-size: 1.1rem; display: grid; gap: 14px;">
+                                <a class="nav-link active" aria-current="page" href="../../index.html"><i class="bi bi-house-fill"></i> Categorias</a>
+                                <a class="nav-link active" aria-current="page" href="../clientes/clientes.html"><i class="bi bi-person"></i> Clientes</a>
+                                <a class="nav-link active" aria-current="page" href="../clientes_demo/clientes_demo.html"><i class="bi bi-file-earmark-person"></i> Clientes Demo</a>
+                                <a class="nav-link active" aria-current="page" href="../clientes_demografia/clientes_demografia.html"><i class="bi bi-file-earmark-person-fill"></i> Clientes Demografia</a>
+                                <a class="nav-link active" aria-current="page" href="../correos/correos.html"><i class="bi bi-envelope-at"></i> Correos</a>
+                                <a class="nav-link active" aria-current="page" href="../empleados/empleados.html"><i class="bi bi-person-bounding-box"></i> Empleados</a>
+                                <a class="nav-link active" aria-current="page" href="../empleados_ubicaciones/empleados_ubicaciones.html"><i class="bi bi-person-workspace"></i> Empleados Ubicaciones</a>
+                                <a class="nav-link active" aria-current="page" href="../factura/factura.html"><i class="bi bi-receipt-cutoff"></i> Factura</a>
+                                <a class="nav-link active" aria-current="page" href="../factura_detalle/factura_detalle.html"><i class="bi bi-receipt"></i> Factura Detalle</a>
+                                <a class="nav-link active" aria-current="page" href="../productos/productos.html"><i class="bi bi-box"></i> Productos</a>
+                                <a class="nav-link active" aria-current="page" href="../proveedores/proveedores.html"><i class="bi bi-truck"></i> Proveedores</a>
+                                <a class="nav-link active" aria-current="page" href="../regiones/regiones.html"><i class="bi bi-compass"></i> Regiones</a>
+                                <a class="nav-link active" aria-current="page" href="../ubicaciones/ubicaciones.html"><i class="bi bi-truck"></i> Ubicaciones</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </nav>
+
+        <!-- Main body -->
+
+        <main>
+            <div style="display: flex; justify-content:space-around;align-items:center; text-align:center;  gap:30rem; ">
+                <div>
+                    <h1>Productos</h1>
+                </div>
+                <div style="display:flex; justify-content:center; align-items:center; text-align:center; margin: 3rem;">  
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><img src="../../assets/svg/lens.svg" alt="..."></span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                    <div style="width: 300px;">
+                        <button style="width: 100px;"type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ Add</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Tabla para insertar dinamicamente -->
+
+            <table class="mainTable table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Producto Nombre</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Cantidad X Unidad</th>
+                        <th scope="col">Precio Unitario</th>
+                        <th scope="col">Unidades Stock</th>
+                        <th scope="col">Unidades Pedidas</th>
+                        <th scope="col">Nivel Reorden</th>
+                        <th scope="col">Descontinuado</th>
+                    </tr>
+                </thead>
+                <tbody class="tableBody " id="productos">
+                    
+                </tbody>
+            </table>
+
+            <!-- MODAL AGREGAR -->
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: black; color: white;">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Productos</h1>
+                            <button style="color: white;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formInsert"><!-- method="post" -->
+                                <div class="mb-3">
+                                    <label for="productoNombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="productoNombre" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Proveedor" class="form-label">Proveedor</label>
+                                    <input type="text" class="form-control" id="Proveedor" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoria" class="form-label">Categoria</label>
+                                    <input type="text" class="form-control" id="categoria" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad_x_unidad" class="form-label">Cantidad Por Unidad</label>
+                                    <input type="text" class="form-control" id="cantidad_x_unidad" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precioUnitario" class="form-label">Precio Unitario</label>
+                                    <input type="text" class="form-control" id="precioUnitario" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="unidadStock" class="form-label">Unidades Stock</label>
+                                    <input type="text" class="form-control" id="unidadStock" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="unidadesPedidas" class="form-label">Unidades Pedidas</label>
+                                    <input type="text" class="form-control" id="unidadesPedidas" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nivelReorden" class="form-label">Nivel Reorden</label>
+                                    <input type="text" class="form-control" id="nivelReorden" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descontinuado" class="form-label">Descontinuado</label>
+                                    <input type="text" class="form-control" id="descontinuado" >
+                                </div>
+                                <button type="submit" class="btn btn-dark" data-bs-dismiss="modal">Submit</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL UPDATE -->
+
+            <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: black; color: white;">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel1">Update</h1>
+                            <button style="color: white;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="updateForm"><!-- method="post" -->
+                                <div class="mb-3">
+                                    <label for="productoNombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="productoNombre" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Proveedor" class="form-label">Proveedor</label>
+                                    <input type="text" class="form-control" id="Proveedor" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoria" class="form-label">Categoria</label>
+                                    <input type="text" class="form-control" id="categoria" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad_x_unidad" class="form-label">Cantidad Por Unidad</label>
+                                    <input type="text" class="form-control" id="cantidad_x_unidad" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precioUnitario" class="form-label">Precio Unitario</label>
+                                    <input type="text" class="form-control" id="precioUnitario" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="unidadStock" class="form-label">Unidades Stock</label>
+                                    <input type="text" class="form-control" id="unidadStock" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="unidadesPedidas" class="form-label">Unidades Pedidas</label>
+                                    <input type="text" class="form-control" id="unidadesPedidas" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nivelReorden" class="form-label">Nivel Reorden</label>
+                                    <input type="text" class="form-control" id="nivelReorden" >
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descontinuado" class="form-label">Descontinuado</label>
+                                    <input type="text" class="form-control" id="descontinuado" >
+                                </div>
+                                <button type="submit" class="btn btn-dark" data-bs-dismiss="modal">Submit</button>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+
+        <footer style="display:flex; justify-content:center; align-items:center;">
+            <p style="margin: auto;">Pagina creada por Yedher y Sherman, todos los derechos reservados ©</p>
+        </footer>  
+        <script src="./productos.js" type="module" ></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>
