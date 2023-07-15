@@ -3,22 +3,22 @@ import mongoose from "mongoose";
 const equipoSchema=mongoose.Schema(
     {
         nombre:{
-            Type:String,
+            type:String,
             required:true,
             trim:true
         },
         manager:{
-            Type:String,
+            type:String,
             required:true,
             trim:true
         },
         integrantes:{
-            Type:String,
+            type:String,
             required:true,
             trim:true
         },
         pais:{
-            Type:String,
+            type:String,
             required:true,
             trim:true
         },

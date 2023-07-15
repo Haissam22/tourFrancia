@@ -1,10 +1,10 @@
-const urlGetCat= "http://localhost:5001/categoria";
+const urlGetCic= "http://localhost:4002/ciclista";
 
 //getAll categories
 
-export const categorias =async ()=>{
+export const ciclistas =async ()=>{
     try {
-        const data=await fetch (`${urlGetCat}/all`);
+        const data=await fetch (`${urlGetCic}`);
         const result=data.json();
         return result;
     } catch (error) {
@@ -12,9 +12,9 @@ export const categorias =async ()=>{
     }
 }
 
-export const categoria =async (id)=>{
+export const ciclista =async (id)=>{
     try {
-        const data=await fetch (`${urlGetCat}/${id}`);
+        const data=await fetch (`${urlGetCic}/${id}`);
         const result=data.json();
         return result;
 
@@ -23,7 +23,7 @@ export const categoria =async (id)=>{
     }
 }
 
-export const insertCategorias =async (categoria)=>{
+export const insert =async (categoria)=>{
     try {
         await fetch(urlGetCat,{
             method:'POST',
@@ -40,14 +40,14 @@ export const insertCategorias =async (categoria)=>{
 
 export const update=async (categoriaUp,id)=>{
     try {
-        await fetch(`${urlGetCat}/${id}`,{
-            method:'PUT',
+        await fetch(`${urlGetCic}/upd/${id}`,{
+            method:'PATCH',
             body:JSON.stringify(categoriaUp),
             headers:{
                 'Content-Type':'application/json'
             }
         })
-        window.location.href = "index.html";
+       window.location.href = "index.html"; 
     } catch (error) {
         console.log(error)
     }
@@ -55,7 +55,7 @@ export const update=async (categoriaUp,id)=>{
 
 export const delet=async (id)=>{
     try {
-        await fetch(`${urlGetCat}/${id}`,{
+        await fetch(`${urlGetCic}/${id}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json'

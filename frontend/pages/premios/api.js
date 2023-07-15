@@ -1,24 +1,24 @@
-const urlGetCli = "http://localhost:5001/cliente";
+const urlPrem = "http://localhost:4002/premio";
 
-export const clientes = async () => {
+export const premios = async () => {
   try {
-    const cliente = await fetch(`${urlGetCli}/all`);
-    const data = cliente.json();
+    const premio = await fetch(`${urlPrem}`);
+    const data = premio.json();
     return data;
   } catch (error) {
     console.log(error.message);
   }
 }
-export const inserClient=async(cliente)=>{
+export const insertPrem=async(premio)=>{
   try {
-    await fetch(`${urlGetCli}/add`,{
+    await fetch(`${urlPrem}/add`,{
       method:"POST",
-      body:JSON.stringify(cliente),
+      body:JSON.stringify(premio),
       headers:{
         "Content-Type":"application/json"
       }
     });
-    window.location.href="./clientes.html"
+    window.location.href="./premios.html"
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +26,7 @@ export const inserClient=async(cliente)=>{
 
 export const  delet=async (id)=>{
   try {
-    await fetch(`${urlGetCli}/${id}`,{
+    await fetch(`${urlPrem}/${id}`,{
       method:'DELETE',
       headers:{
         'Content-Type':'application/json'
@@ -37,25 +37,25 @@ export const  delet=async (id)=>{
     console.log(error);
   }
 }
-export const update = async (cliente,id)=>{
+export const update = async (premio,id)=>{
   try {
-   await fetch(`${urlGetCli}/upd/${id}`,{
+   await fetch(`${urlPrem}/upd/${id}`,{
     method:"PATCH",
-    body:JSON.stringify(cliente),
+    body:JSON.stringify(premio),
     headers:{
       'Content-Type':'application/json'
     } 
    })
-   window.location.href="./clientes.html";
+    window.location.href="./premios.html";
   } catch (error) {
     console.log(error)
   }
 }
 
-export const getCliente = async (id) => {
+export const getpremio = async (id) => {
   try {
-    const cliente = await fetch(`${urlGetCli}/${id}`);
-    const data = cliente.json();
+    const premio = await fetch(`${urlPrem}/${id}`);
+    const data = premio.json();
     return data;
   } catch (error) {
     console.log(error.message);

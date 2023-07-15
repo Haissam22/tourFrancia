@@ -29,24 +29,14 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
                             <li class="nav-item" style="font-size: 1.1rem; display: grid; gap: 14px;">
-                                <a class="nav-link active" aria-current="page" href="../frontend/index.html"><i class="bi bi-house-fill"></i> Categorias</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/clientes/clientes.html"><i class="bi bi-person"></i> Clientes</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/clientes_demo/clientes_demo.html"><i class="bi bi-file-earmark-person"></i> Clientes Demo</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/clientes_demografia/clientes_demografia.html"><i class="bi bi-file-earmark-person-fill"></i> Clientes Demografia</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/correos/correos.html"><i class="bi bi-envelope-at"></i> Correos</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/empleados/empleados.html"><i class="bi bi-person-bounding-box"></i> Empleados</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/empleados_ubicaciones/empleados_ubicaciones.html"><i class="bi bi-person-workspace"></i> Empleados Ubicaciones</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/factura/factura.html"><i class="bi bi-receipt-cutoff"></i> Factura</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/factura_detalle/factura_detalle.html"><i class="bi bi-receipt"></i> Factura Detalle</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/productos/productos.html"><i class="bi bi-box"></i> Productos</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/proveedores/proveedores.html"><i class="bi bi-truck"></i> Proveedores</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/regiones/regiones.html"><i class="bi bi-compass"></i> Regiones</a>
-                                <a class="nav-link active" aria-current="page" href="./pages/ubicaciones/ubicaciones.html"><i class="bi bi-truck"></i> Ubicaciones</a>
+                                <a class="nav-link active" aria-current="page" href="../frontend/index.html"><i class="bi bi-house-fill"></i> Ciclistas</a>
+                                <a class="nav-link active" aria-current="page" href="./pages/equipos/equipos.html"><i class="bi bi-person"></i> Equipos</a>
+                                <a class="nav-link active" aria-current="page" href="./pages/etapas/etapas.html"><i class="bi bi-diagram-3"></li> Etapas</a>
+                                <a class="nav-link active" aria-current="page" href="./pages/premios/premios.html"><i class="bi bi-gift-fill"></i> Premios</a>
                             </li>
                         </ul>
                     </div>
-                </div>
-                
+                </div> 
             </div>
         </nav>
         <header>
@@ -74,8 +64,10 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Image</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Sex</th>
+                        <th scope="col">equipo</th>
+                        <th scope="col">etapa</th>
                         <th scope="col">Delete</th>
                         <th scope="col">Update</th>
                     </tr>
@@ -99,12 +91,20 @@
                                     <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Description</label>
-                                    <input type="text" class="form-control" id="description">
+                                    <label for="exampleInputPassword1" class="form-label">Age</label>
+                                    <input type="text" class="form-control" id="edad">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                                    <input type="text" class="form-control" id="image">
+                                    <label for="exampleInputPassword1" class="form-label">sex</label>
+                                    <input type="text" class="form-control" id="sexo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">team</label>
+                                    <input type="text" class="form-control" id="equipo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">stage</label>
+                                    <input type="text" class="form-control" id="etapa">
                                 </div>
                                 <button type="submit" class="btn btn-dark" data-bs-dismiss="modal">Submit</button>
                             </form>   
@@ -124,15 +124,23 @@
                             <form id="updateForm"><!-- method="post" -->
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Name</label>
-                                    <input  type="text" class="form-control" id="nameUpdate" >
+                                    <input type="text" class="form-control" id="updname" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Description</label>
-                                    <input type="text" class="form-control" id="descriptionUpdate">
+                                    <label for="exampleInputPassword1" class="form-label">Age</label>
+                                    <input type="text" class="form-control" id="updedad">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                                    <input type="text" class="form-control" id="imageUpdate">
+                                    <label for="exampleInputPassword1" class="form-label">sex</label>
+                                    <input type="text" class="form-control" id="updsexo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">team</label>
+                                    <input type="text" class="form-control" id="updequipo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">stage</label>
+                                    <input type="text" class="form-control" id="updetapa">
                                 </div>
                                 <input id="idUpdate" name="idUpdate" type="hidden" value="">
                                 <button type="submit"  class="btn btn-dark update" data-bs-dismiss="modal">Submit</button>
@@ -145,7 +153,7 @@
         <footer style="display:flex; justify-content:center; align-items:center;">
             <p style="margin: auto;">Pagina creada por Yedher y Sherman, todos los derechos reservados ©</p>
         </footer>  
-        <script src="./categorias.js" type="module" ></script> 
+        <script src="./ciclistas.js" type="module" ></script> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     </body>
 </html>

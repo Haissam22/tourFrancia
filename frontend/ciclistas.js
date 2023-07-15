@@ -1,23 +1,26 @@
-import { categorias,categoria,insertCategorias,update,delet } from "./api.js";
+
+import { ciclista,ciclistas,insert,update,delet } from "./api.js";
 
 
-document.addEventListener("DOMContentLoaded",showCategorias);
+document.addEventListener("DOMContentLoaded",showCiclistas);
 const tableCat=document.querySelector('#categorias');
 
 
-async function showCategorias() {
-    const data=await categorias();
+async function showCiclistas() {
+    const data=await ciclistas();
     console.log(data);
     data.forEach(element => {
-        const {CategoriaID,CategoriaNombre,Descripcion,Imagen} = element;
+        const {nombre,edad,sexo,equipo,etapa,_id} = element;
         tableCat.innerHTML+=`
             <tr>
-            <td>${CategoriaID}</td>
-            <td>${CategoriaNombre}</td>
-            <td>${Descripcion}</td>
-            <td>${Imagen}</td>
-            <td> <button class="btn btn-danger delete" id="${CategoriaID}">Delete</button></td>
-            <td> <button type="button" class="btn btn-warning update" id="${CategoriaID}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Update</button></td>
+            <td>${_id}</td>
+            <td>${nombre}</td>
+            <td>${edad}</td>
+            <td>${sexo}</td>
+            <td>${equipo}</td>
+            <td>${etapa}</td>
+            <td> <button class="btn btn-danger delete" id="${_id}">Delete</button></td>
+            <td> <button type="button" class="btn btn-warning update" id="${_id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Update</button></td>
             </tr>
         `
     });
@@ -31,7 +34,7 @@ tableCat.addEventListener('click',(e)=>{
         borrar(id);
     }else if(e.target.classList.contains('update')){
         const id=e.target.getAttribute('id');
-        getCategoria(id);
+        getCiclista(id);
     }
 })
 
@@ -49,66 +52,78 @@ const borrar=(id)=>{
 const formInsert=document.querySelector('#insertForm');
 
 formInsert.addEventListener('submit',(e)=>{
-    insert(e);
+    insertCiclist(e);
 })
 
-const insert=(e)=>{
+const insertCiclist=(e)=>{
     e.preventDefault();
-    const CategoriaNombre=document.querySelector('#name').value;
-    const Descripcion=document.querySelector('#description').value;
-    const Imagen=document.querySelector('#image').value;
-    const categoria={
-        CategoriaNombre,
-        Descripcion,
-        Imagen
+    const nombre=document.querySelector('#name').value;
+    const edad=document.querySelector('#description').value;
+    const sexo=document.querySelector('#sexo').value;
+    const equipo=document.querySelector('#equipo').value;
+    const etapa=document.querySelector('#etapa').value;
+    const ciclista={
+        nombre,
+        edad,
+        sexo,
+        equipo,
+        etapa
     }
-    console.log(categoria);
-    if(validation(categoria)){
+    console.log(ciclista);
+    if(validation(ciclista)){
         alert("todos los datos son obligatorios")
     }else{
-        return insertCategorias(categoria);
+        return insert(ciclista);
     }
 }
 
 
 
 //metodo actualizar o UPDATE
-const getCategoria= async(id)=>{
-    const data=await categoria(id);
-    const {CategoriaID,CategoriaNombre,Descripcion,Imagen}=data[0];
+const getCiclista= async(id)=>{
+    console.log(id)
+    const data=await ciclista(id);
+    const {nombre,edad,sexo,equipo,etapa,_id}=data;
     console.log(data);
-    console.log(CategoriaID)
-    document.querySelector('#idUpdate').value= CategoriaID;
-    document.querySelector('#nameUpdate').value= CategoriaNombre;
-    document.querySelector('#descriptionUpdate').value= Descripcion;
-    document.querySelector('#imageUpdate').value= Imagen;
-    
+   
+    document.querySelector('#idUpdate').value= _id;
+    document.querySelector('#updname').value= nombre;
+    document.querySelector('#updedad').value= edad;
+    document.querySelector('#updsexo').value= sexo;
+    document.querySelector('#updequipo').value= equipo;
+    document.querySelector('#updetapa').value= etapa;
+
 }
 const updateForm=document.querySelector('#updateForm');
 
 updateForm.addEventListener('submit',(e)=>{
     e.preventDefault();
-    updateCa();
+    updateCiclis();
 })
 
-function updateCa(){
-    const id=document.querySelector('#idUpdate').value;
-    const CategoriaNombre=document.querySelector('#nameUpdate').value;
-    const Descripcion=document.querySelector('#descriptionUpdate').value;
-    const Imagen=document.querySelector('#imageUpdate').value;
+function updateCiclis(){
+      
+    const id=document.querySelector('#idUpdate').value
+    const nombre=document.querySelector('#updname').value
+    const edad=document.querySelector('#updedad').value
+    const sexo=document.querySelector('#updsexo').value
+    const equipo=document.querySelector('#updequipo').value
+    const etapa=document.querySelector('#updetapa').value
 
     /* const Imagen=document.querySelector('#imageUpdate').files[0].name;*/
 
-    const categoria={
-        CategoriaNombre,
-        Descripcion,
-        Imagen
+    const ciclista={
+        nombre,
+        edad,
+        sexo,
+        equipo,
+        etapa
     } 
-    console.log(categoria,id);
-   if(validation(categoria)){
+    console.log(ciclista,id);
+   if(validation(ciclista)){
         alert("todos los datos son obligatorios")
     }else{
-        return update(categoria,id);
+        return update(ciclista,id);
     }  
 }
 

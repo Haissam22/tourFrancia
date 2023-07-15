@@ -1,36 +1,23 @@
-import { clientes,inserClient,delet,getCliente,update } from "./api.js";
+import {premios,insertPrem,delet,update,getpremio } from "./api.js";
 
-document.addEventListener("DOMContentLoaded", showClientes);
-const table = document.querySelector('#Cards');
+document.addEventListener("DOMContentLoaded", showPremio);
+const table = document.querySelector('#premios');
 
-async function showClientes (){
-  const cliente = await clientes();
-  console.log(cliente);
-  cliente.forEach(cliente => {
-    const {_id , Compania , Contacto , Titulo , Direccion , Ciudad , Regiones , CodigoPostal , Pais , Telefono , Fax} = cliente;
+async function showPremio (){
+  const premio = await premios();
+  console.log(premio);
+  premio.forEach(element => {
+    const {_id ,etapa,descripcion,km} = element;
     table.innerHTML += 
     `
-      <div class="card" style="width: 18rem;">
-      
-      <div class="card-body">
-        <h5 class="card-title">${Compania}</h5>
-        <p class="card-text">${Titulo}</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Contacto: ${Contacto}</li>
-        <li class="list-group-item">Direccion: ${Direccion}</li>
-        <li class="list-group-item">Ciudad: ${Ciudad}</li>
-        <li class="list-group-item">Regiones: ${Regiones}</li>
-        <li class="list-group-item">Pais: ${Pais}</li>
-        <li class="list-group-item">CodigoPostal: ${CodigoPostal}</li>
-        <li class="list-group-item">Fax: ${Fax}</li>
-        <li class="list-group-item">Telefono: ${Telefono}</li>
-      </ul>
-      <div class="card-body">
-      <button class="btn btn-danger delete" id="${_id}">Delete</button>
-      <button type="button" class="btn btn-warning update" id="${_id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Update</button>
-      </div>
-    </div>
+    <tr>
+      <td>${_id}</td>
+      <td>${etapa}</td>
+      <td>${descripcion}</td>
+      <td>${km}</td>
+      <td> <button class="btn btn-danger delete" id="${_id}">Delete</button></td>
+      <td> <button type="button" class="btn btn-warning update" id="${_id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Update</button></td>
+    </tr>
     `
   }) 
 }
@@ -49,33 +36,21 @@ formInsert.addEventListener('submit',(e)=>{
 const insert=()=>{
   
   
-  const Compania=document.querySelector('#company').value;
-  const Contacto=document.querySelector('#contact').value;
-  const Titulo=document.querySelector('#title').value;
-  const Direccion=document.querySelector('#direction').value;
-  const Ciudad=document.querySelector('#city').value;
-  const Regiones=document.querySelector('#region').value;
-  const CodigoPostal=document.querySelector('#potCode').value;
-  const Pais=document.querySelector('#country').value;
-  const Telefono=document.querySelector('#cellphone').value;
-  const Fax=document.querySelector('#fax').value;
+  const etapa=document.querySelector('#etapa').value;
+  const descripcion=document.querySelector('#descripcion').value;
+  const km=document.querySelector('#km').value;
+  
 
-  const cliente={
-    Compania,
-    Contacto,
-    Titulo,
-    Direccion,
-    Ciudad,
-    Regiones,
-    CodigoPostal,
-    Pais,
-    Telefono,
-    Fax
+  const premio={
+    etapa,
+    descripcion,
+    km,
+
   }
-  if(validation(cliente)){
+  if(validation(premio)){
     alert("todos los datos son obligatorios")
   }else{
-      return inserClient(cliente);
+      return insertPrem(premio);
   } 
 }
 
@@ -87,46 +62,27 @@ table.addEventListener('click',(e)=>{
     delet(id);
 }else if(e.target.classList.contains('update')){
     const id=e.target.getAttribute('id');
-    getClient(id);
+    getPrem(id);
 }
 })
 
 
 //update
 
-const getClient=async (id)=>{
-  const data=await getCliente(id);
-  const {_id,Compania,Contacto,Titulo,Direccion,Ciudad,Regiones,CodigoPostal,Pais,Telefono,Fax}=data
+const getPrem=async (id)=>{
+  const data=await getpremio(id);
+  const {_id,etapa,descripcion,km}=data
+
   console.log(data);
-  document.querySelector('#companyUpdat').value=Compania;
-  
 
-  document.querySelector('#contactUpdat').value=Contacto;
+  document.querySelector('#updetapa').value=etapa;
   
-
-  document.querySelector('#titleUpdat').value=Titulo;
+  document.querySelector('#upddescripcion').value=descripcion;
   
-  document.querySelector('#directionUpdat').value=Direccion;
-  
-
-  document.querySelector('#cityUpdat').value=Ciudad;
-  
-
-  document.querySelector('#regionUpdat').value=Regiones;
- 
-
-  document.querySelector('#potCodeUpdat').value=CodigoPostal;
-  
-
-  document.querySelector('#countryUpdat').value=Pais;
-  
-
-  document.querySelector('#cellphoneUpdat').value=Telefono;
-  
-
-  document.querySelector('#faxUpdat').value=Fax;
+  document.querySelector('#updkm').value=km;
 
   document.querySelector('#idUpdate').value=_id;
+ 
 }
 
 const updateForm=document.querySelector('#updateForm');
@@ -138,29 +94,16 @@ updateForm.addEventListener('submit',(e)=>{
 
 function updateClie() {
   const id=document.querySelector('#idUpdate').value;
-  const Compania=document.querySelector('#companyUpdat').value;
-  const Contacto=document.querySelector('#contactUpdat').value;
-  const Titulo=document.querySelector('#titleUpdat').value;
-  const Direccion=document.querySelector('#directionUpdat').value;
-  const Ciudad=document.querySelector('#cityUpdat').value;
-  const Regiones=document.querySelector('#regionUpdat').value;
-  const CodigoPostal=document.querySelector('#potCodeUpdat').value;
-  const Pais=document.querySelector('#countryUpdat').value;
-  const Telefono=document.querySelector('#cellphoneUpdat').value;
-  const Fax=document.querySelector('#faxUpdat').value;
- 
+  const etapa=document.querySelector('#updetapa').value;
+  const descripcion=document.querySelector('#upddescripcion').value;
+  const km=document.querySelector('#updkm').value;
+
   const cliente={
-    Compania,
-    Contacto,
-    Titulo,
-    Direccion,
-    Ciudad,
-    Regiones,
-    CodigoPostal,
-    Pais,
-    Telefono,
-    Fax
+    etapa,
+    descripcion,
+    km
   }
+
   if(validation(cliente)){
     alert("todos los datos son obligatorios")
   }else{
